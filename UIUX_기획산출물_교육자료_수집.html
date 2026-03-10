@@ -1,0 +1,1997 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>UIUX 프로젝트 기획산출물 – 단계별 교육자료 수집</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700&family=IBM+Plex+Mono:wght@400;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #0d0f14;
+    --surface: #161921;
+    --surface2: #1e2230;
+    --border: #2a2f3f;
+    --accent: #4f7cff;
+    --accent2: #7ec8e3;
+    --accent3: #a78bfa;
+    --text: #d4dae8;
+    --text-muted: #7580a0;
+    --text-label: #a0aac0;
+    --yellow: #f5c842;
+    --green: #4ade80;
+    --pink: #f472b6;
+
+    --a: #161921;
+    --b: #1a1d28;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'Noto Sans KR', sans-serif;
+    font-size: 14px;
+    line-height: 1.7;
+    padding: 0 0 80px;
+  }
+
+  /* ── Header ── */
+  header {
+    background: linear-gradient(135deg, #0b0e1a 0%, #131728 50%, #0d111f 100%);
+    border-bottom: 1px solid var(--border);
+    padding: 48px 60px 40px;
+    position: relative;
+    overflow: hidden;
+  }
+  header::before {
+    content: '';
+    position: absolute;
+    top: -80px; right: -80px;
+    width: 400px; height: 400px;
+    background: radial-gradient(circle, rgba(79,124,255,0.12) 0%, transparent 70%);
+    pointer-events: none;
+  }
+  .header-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: rgba(79,124,255,0.12);
+    border: 1px solid rgba(79,124,255,0.3);
+    color: var(--accent);
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    padding: 5px 12px;
+    border-radius: 4px;
+    margin-bottom: 20px;
+    font-family: 'IBM Plex Mono', monospace;
+  }
+  h1 {
+    font-size: 30px;
+    font-weight: 700;
+    color: #fff;
+    letter-spacing: -0.5px;
+    line-height: 1.3;
+    margin-bottom: 12px;
+  }
+  h1 span { color: var(--accent); }
+  .subtitle {
+    color: var(--text-muted);
+    font-size: 14px;
+    max-width: 680px;
+  }
+  .meta-row {
+    display: flex;
+    gap: 24px;
+    margin-top: 28px;
+    flex-wrap: wrap;
+  }
+  .meta-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 12px;
+    color: var(--text-muted);
+    font-family: 'IBM Plex Mono', monospace;
+  }
+  .meta-dot { width: 6px; height: 6px; border-radius: 50%; }
+
+  /* ── Layout ── */
+  .container { max-width: 1100px; margin: 0 auto; padding: 40px 60px 0; }
+
+  /* ── Overview grid ── */
+  .overview {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 12px;
+    margin-bottom: 48px;
+  }
+  .ov-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 16px 20px;
+    position: relative;
+    overflow: hidden;
+  }
+  .ov-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0;
+    width: 3px; height: 100%;
+    background: var(--phase-color, var(--accent));
+  }
+  .ov-card .phase-code {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 11px;
+    font-weight: 600;
+    color: var(--phase-color, var(--accent));
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    margin-bottom: 6px;
+  }
+  .ov-card .phase-name { font-size: 13px; color: var(--text); font-weight: 500; }
+  .ov-card .phase-count {
+    font-size: 11px;
+    color: var(--text-muted);
+    margin-top: 4px;
+  }
+
+  /* ── Phase Section ── */
+  .phase-section { margin-bottom: 56px; }
+  .phase-header {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    margin-bottom: 24px;
+    padding-bottom: 16px;
+    border-bottom: 1px solid var(--border);
+  }
+  .phase-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 7px 16px;
+    border-radius: 6px;
+    background: rgba(255,255,255,0.04);
+    border: 1px solid var(--border);
+  }
+  .phase-dot {
+    width: 10px; height: 10px;
+    border-radius: 50%;
+  }
+  .phase-code-text {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+  }
+  .phase-name-text { font-size: 15px; font-weight: 600; color: #fff; }
+  .phase-desc { font-size: 13px; color: var(--text-muted); margin-left: auto; }
+
+  /* ── Deliverable Card ── */
+  .deliverable-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    margin-bottom: 16px;
+    overflow: hidden;
+    transition: border-color 0.2s;
+  }
+  .deliverable-card:hover { border-color: rgba(79,124,255,0.35); }
+
+  .card-header {
+    display: flex;
+    align-items: flex-start;
+    gap: 14px;
+    padding: 18px 22px 16px;
+    cursor: pointer;
+    position: relative;
+  }
+  .card-icon {
+    width: 36px; height: 36px;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 16px;
+    flex-shrink: 0;
+    margin-top: 2px;
+  }
+  .card-meta { flex: 1; }
+  .card-title {
+    font-size: 15px;
+    font-weight: 600;
+    color: #fff;
+    margin-bottom: 4px;
+  }
+  .card-subtitle {
+    font-size: 12px;
+    color: var(--text-muted);
+    font-family: 'IBM Plex Mono', monospace;
+  }
+  .card-tags {
+    display: flex;
+    gap: 6px;
+    flex-wrap: wrap;
+    margin-top: 8px;
+  }
+  .tag {
+    font-size: 10px;
+    padding: 2px 8px;
+    border-radius: 3px;
+    font-family: 'IBM Plex Mono', monospace;
+    border: 1px solid;
+    letter-spacing: 0.04em;
+  }
+  .tag-essential { color: #4ade80; border-color: rgba(74,222,128,0.3); background: rgba(74,222,128,0.07); }
+  .tag-optional  { color: #f5c842; border-color: rgba(245,200,66,0.3); background: rgba(245,200,66,0.07); }
+  .tag-submit    { color: #7ec8e3; border-color: rgba(126,200,227,0.3); background: rgba(126,200,227,0.07); }
+
+  /* ── Resources ── */
+  .card-body { padding: 0 22px 20px; }
+  .resource-section { margin-bottom: 20px; }
+  .resource-section:last-child { margin-bottom: 0; }
+  .res-heading {
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    font-family: 'IBM Plex Mono', monospace;
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .res-heading::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: var(--border);
+  }
+
+  .resource-list { list-style: none; }
+  .resource-item {
+    display: flex;
+    gap: 12px;
+    padding: 10px 12px;
+    border-radius: 6px;
+    margin-bottom: 6px;
+    background: rgba(255,255,255,0.02);
+    border: 1px solid transparent;
+    transition: all 0.15s;
+  }
+  .resource-item:hover { background: rgba(255,255,255,0.04); border-color: var(--border); }
+  .res-icon { font-size: 15px; flex-shrink: 0; margin-top: 2px; }
+  .res-content { flex: 1; }
+  .res-title {
+    font-size: 13px;
+    color: var(--text);
+    font-weight: 500;
+    margin-bottom: 2px;
+  }
+  .res-desc {
+    font-size: 11.5px;
+    color: var(--text-muted);
+    line-height: 1.5;
+  }
+  .res-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    font-size: 11px;
+    color: var(--accent);
+    text-decoration: none;
+    margin-top: 4px;
+    font-family: 'IBM Plex Mono', monospace;
+    border: 1px solid rgba(79,124,255,0.25);
+    padding: 2px 8px;
+    border-radius: 3px;
+    transition: all 0.15s;
+  }
+  .res-link:hover { background: rgba(79,124,255,0.1); border-color: rgba(79,124,255,0.5); }
+  .res-link-group { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 6px; }
+
+  /* ── Note box ── */
+  .note-box {
+    background: rgba(167,139,250,0.07);
+    border: 1px solid rgba(167,139,250,0.2);
+    border-left: 3px solid var(--accent3);
+    border-radius: 6px;
+    padding: 12px 16px;
+    font-size: 12.5px;
+    color: #c4b5f8;
+    line-height: 1.6;
+    margin-top: 12px;
+  }
+
+  /* ── Divider ── */
+  .section-divider {
+    border: none;
+    border-top: 1px solid var(--border);
+    margin: 40px 0;
+  }
+
+  /* ── Footer ── */
+  footer {
+    margin-top: 60px;
+    padding: 24px 60px;
+    border-top: 1px solid var(--border);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 11px;
+    color: var(--text-muted);
+    font-family: 'IBM Plex Mono', monospace;
+  }
+
+  /* ── Document Format Preview ── */
+  .doc-format {
+    background: #0b0d14;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    overflow: hidden;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 11px;
+  }
+  .doc-format-bar {
+    background: #13161f;
+    border-bottom: 1px solid var(--border);
+    padding: 7px 14px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .doc-format-bar .dot { width:8px;height:8px;border-radius:50%; }
+  .doc-format-filename {
+    color: var(--text-muted);
+    font-size: 10px;
+    letter-spacing: 0.06em;
+    margin-left: 6px;
+  }
+  .doc-format-ext {
+    margin-left: auto;
+    font-size: 10px;
+    color: #4ade80;
+    background: rgba(74,222,128,0.08);
+    border: 1px solid rgba(74,222,128,0.2);
+    padding: 1px 7px;
+    border-radius: 3px;
+  }
+  .doc-format-body { padding: 14px; }
+
+  /* Section header row */
+  .df-section {
+    margin-bottom: 10px;
+  }
+  .df-section-title {
+    color: var(--accent);
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    margin-bottom: 5px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+  .df-section-title::before {
+    content: '▸';
+    color: var(--accent);
+    opacity: 0.7;
+  }
+
+  /* Table-style columns */
+  .df-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 4px;
+  }
+  .df-table th {
+    background: rgba(79,124,255,0.08);
+    border: 1px solid rgba(79,124,255,0.15);
+    color: var(--accent2);
+    font-size: 9.5px;
+    font-weight: 600;
+    padding: 5px 8px;
+    text-align: left;
+    letter-spacing: 0.05em;
+    white-space: nowrap;
+  }
+  .df-table td {
+    border: 1px solid var(--border);
+    color: var(--text-muted);
+    font-size: 9.5px;
+    padding: 4px 8px;
+    background: rgba(255,255,255,0.015);
+    vertical-align: top;
+  }
+  .df-table tr:hover td { background: rgba(255,255,255,0.03); }
+  .df-sample { color: #7580a0; font-style: italic; }
+  .df-required { color: #f472b6; font-weight: 600; }
+  .df-optional { color: #facc15; }
+
+  /* Field list (non-table style) */
+  .df-fields {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 5px;
+    margin-bottom: 6px;
+  }
+  .df-field {
+    background: rgba(255,255,255,0.03);
+    border: 1px solid var(--border);
+    border-radius: 3px;
+    padding: 3px 9px;
+    color: var(--text-label);
+    font-size: 9.5px;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+  }
+  .df-field .req { color: #f472b6; }
+  .df-field .opt { color: #facc15; }
+
+  /* Mini divider between sections */
+  .df-sep {
+    border: none;
+    border-top: 1px dashed rgba(255,255,255,0.07);
+    margin: 9px 0;
+  }
+
+  .df-note {
+    color: #4a5268;
+    font-size: 9px;
+    margin-top: 8px;
+    letter-spacing: 0.03em;
+  }
+
+  /* Phase colors */
+  .c-a { --phase-color: #f472b6; }
+  .c-b { --phase-color: #fb923c; }
+  .c-c { --phase-color: #facc15; }
+  .c-d { --phase-color: #4ade80; }
+  .c-e { --phase-color: #22d3ee; }
+  .c-f { --phase-color: #818cf8; }
+  .c-g { --phase-color: #f43f5e; }
+  .c-h { --phase-color: #a78bfa; }
+</style>
+</head>
+<body>
+
+<!-- ══ HEADER ══════════════════════════════════════════════════════ -->
+<header>
+  <div class="header-badge">📋 Process Map Reference</div>
+  <h1>UIUX 프로젝트 <span>기획산출물</span><br>단계별 교육자료 수집</h1>
+  <p class="subtitle">Process Map_240729 기준 기획산출물 표시 항목(● / ◐)에 대해 국내외 최신 교육자료 및 웹 공유 레퍼런스를 단계별로 정리한 문서입니다.</p>
+  <div class="meta-row">
+    <div class="meta-item"><div class="meta-dot" style="background:#4f7cff"></div>수집 기준일: 2025.03</div>
+    <div class="meta-item"><div class="meta-dot" style="background:#4ade80"></div>대상 단계: A~H (총 8개 Phase)</div>
+    <div class="meta-item"><div class="meta-dot" style="background:#f5c842"></div>기획산출물 항목: 30개</div>
+  </div>
+</header>
+
+<!-- ══ CONTAINER ═══════════════════════════════════════════════════ -->
+<div class="container">
+
+  <!-- Phase Overview -->
+  <div class="overview" style="margin-top:32px">
+    <div class="ov-card c-a"><div class="phase-code">A. 제안</div><div class="phase-name">제안서 / 시연</div><div class="phase-count">1개 항목</div></div>
+    <div class="ov-card c-b"><div class="phase-code">B. 계획</div><div class="phase-name">수행계획서</div><div class="phase-count">1개 항목</div></div>
+    <div class="ov-card c-c"><div class="phase-code">C. 분석</div><div class="phase-name">요구사항/WBS/전략서</div><div class="phase-count">3개 항목</div></div>
+    <div class="ov-card c-d"><div class="phase-code">D. 설계</div><div class="phase-name">IA/화면설계/디자인가이드 外</div><div class="phase-count">7개 항목</div></div>
+    <div class="ov-card c-e"><div class="phase-code">E. 구현</div><div class="phase-name">테스트/사용성/웹접근성 外</div><div class="phase-count">5개 항목</div></div>
+    <div class="ov-card c-f"><div class="phase-code">F. 이관/오픈</div><div class="phase-name">사용자/관리자 매뉴얼</div><div class="phase-count">2개 항목</div></div>
+    <div class="ov-card c-g"><div class="phase-code">G. 종료</div><div class="phase-name">완료보고서/검수확인서</div><div class="phase-count">2개 항목</div></div>
+    <div class="ov-card c-h"><div class="phase-code">H. 관리/보고</div><div class="phase-name">주간(월간)업무 보고서</div><div class="phase-count">1개 항목</div></div>
+  </div>
+
+  <hr class="section-divider">
+
+  <!-- ══════════════════════════════════════════════════════════
+       A. 제안
+  ═══════════════════════════════════════════════════════════════ -->
+  <div class="phase-section">
+    <div class="phase-header">
+      <div class="phase-pill c-a">
+        <div class="phase-dot" style="background:#f472b6"></div>
+        <span class="phase-code-text" style="color:#f472b6">A</span>
+      </div>
+      <span class="phase-name-text">제안 단계</span>
+      <span class="phase-desc">Pre-sales → 수주 전 기획 경쟁 프레젠테이션</span>
+    </div>
+
+    <div class="deliverable-card">
+      <div class="card-header">
+        <div class="card-icon" style="background:rgba(244,114,182,0.1)">📑</div>
+        <div class="card-meta">
+          <div class="card-title">제안서 (UX/UI 기획 파트)</div>
+          <div class="card-subtitle">A03 · 고객사 제출 · ● 필수</div>
+          <div class="card-tags">
+            <span class="tag tag-essential">필수</span>
+            <span class="tag tag-submit">고객사 제출</span>
+          </div>
+        </div>
+      </div>
+      <div class="card-body">
+        <div class="resource-section">
+          <div class="res-heading">📖 개념 & 작성법</div>
+          <ul class="resource-list">
+            <li class="resource-item">
+              <span class="res-icon">📝</span>
+              <div class="res-content">
+                <div class="res-title">UX 제안서에 포함해야 할 핵심 구성 요소</div>
+                <div class="res-desc">벤치마킹 분석, UX 컨셉 방향, 핵심 화면 Key Screen, 수행 전략, 팀 구성, 일정/공수 계획 등 제안서 파트별 구성 가이드</div>
+                <div class="res-link-group">
+                  <a class="res-link" href="https://medium.com/plusx-ux-lab/%EC%9D%B4-%EC%95%B1%EC%9D%80-%EC%96%B4%EB%96%BB%EA%B2%8C-%EC%84%A4%EA%B3%84%ED%95%9C-%EA%B1%B8%EA%B9%8C-c1cf91452e20" target="_blank">→ PlusX UX Lab (Medium)</a>
+                </div>
+              </div>
+            </li>
+            <li class="resource-item">
+              <span class="res-icon">🎓</span>
+              <div class="res-content">
+                <div class="res-title">UI/UX 설계 기획 시 반드시 작성하는 문서 개요</div>
+                <div class="res-desc">실무 기획자 관점에서 요구사항정의서 ~ IA ~ 화면설계서까지 각 문서의 목적과 작성 순서 정리 (SI/에이전시 실무 중심)</div>
+                <div class="res-link-group">
+                  <a class="res-link" href="https://sweetgoing.kr/entry/%F0%9F%93%9AUIUX-%EC%9B%B9-%EC%95%B1-%EC%84%9C%EB%B9%84%EC%8A%A4-%EA%B8%B0%ED%9A%8D-%ED%99%94%EB%A9%B4%EC%84%A4%EA%B3%84%EC%97%90-%ED%95%84%EC%9A%94%ED%95%9C-%EB%AC%B8%EC%84%9C" target="_blank">→ 더블크림 블로그 (2024)</a>
+                </div>
+              </div>
+            </li>
+          </ul>
+        </div>
+        <div class="note-box">💡 <strong>실무 팁:</strong> 제안서 기획 파트는 벤치마킹 + 핵심과제 선정 + UX 방향성 + 주요 키스크린 초안으로 구성하며, 설계 단계 산출물(IA, 화면설계서)과 연계되는 초기 버전(v0.1)으로 관리하는 것이 효율적입니다.</div>
+        <div class="resource-section" style="margin-top:16px">
+          <div class="res-heading">📄 문서 포맷 예시</div>
+          <div class="doc-format">
+            <div class="doc-format-bar">
+              <div class="dot" style="background:#ff5f57"></div>
+              <div class="dot" style="background:#febc2e"></div>
+              <div class="dot" style="background:#28c840"></div>
+              <span class="doc-format-filename">제안서_[고객사명]_v1.0</span>
+              <span class="doc-format-ext">.pptx</span>
+            </div>
+            <div class="doc-format-body">
+              <div class="df-section">
+                <div class="df-section-title">표지 / 목차</div>
+                <div class="df-fields">
+                  <span class="df-field"><span class="req">●</span> 프로젝트명</span>
+                  <span class="df-field"><span class="req">●</span> 제안사명</span>
+                  <span class="df-field"><span class="req">●</span> 제출일</span>
+                  <span class="df-field"><span class="req">●</span> 보안등급</span>
+                </div>
+              </div>
+              <hr class="df-sep">
+              <div class="df-section">
+                <div class="df-section-title">1. 사업 이해 및 환경 분석</div>
+                <div class="df-fields">
+                  <span class="df-field"><span class="req">●</span> 사업 배경 및 목적</span>
+                  <span class="df-field"><span class="req">●</span> RFP 요건 요약</span>
+                  <span class="df-field"><span class="req">●</span> As-Is 현황분석</span>
+                  <span class="df-field"><span class="opt">◐</span> 사용자 분석</span>
+                  <span class="df-field"><span class="opt">◐</span> 경쟁사 벤치마킹</span>
+                </div>
+              </div>
+              <hr class="df-sep">
+              <div class="df-section">
+                <div class="df-section-title">2. UX/UI 전략 및 컨셉</div>
+                <div class="df-fields">
+                  <span class="df-field"><span class="req">●</span> 핵심과제 선정</span>
+                  <span class="df-field"><span class="req">●</span> UX 전략 방향</span>
+                  <span class="df-field"><span class="req">●</span> 디자인 컨셉 키워드</span>
+                  <span class="df-field"><span class="req">●</span> Key Screen 초안</span>
+                </div>
+              </div>
+              <hr class="df-sep">
+              <div class="df-section">
+                <div class="df-section-title">3. 수행 계획</div>
+                <div class="df-fields">
+                  <span class="df-field"><span class="req">●</span> 마일스톤</span>
+                  <span class="df-field"><span class="req">●</span> 투입 인력 구성</span>
+                  <span class="df-field"><span class="req">●</span> 예상 공수</span>
+                  <span class="df-field"><span class="opt">◐</span> 유사 수행 실적</span>
+                </div>
+              </div>
+              <div class="df-note">● 필수항목 &nbsp;◐ 프로젝트 성격에 따라 선택</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════════════════════════════════
+       B. 계획
+  ═══════════════════════════════════════════════════════════════ -->
+  <div class="phase-section">
+    <div class="phase-header">
+      <div class="phase-pill c-b">
+        <div class="phase-dot" style="background:#fb923c"></div>
+        <span class="phase-code-text" style="color:#fb923c">B</span>
+      </div>
+      <span class="phase-name-text">계획 단계</span>
+      <span class="phase-desc">수주 후 프로젝트 착수 계획 수립</span>
+    </div>
+
+    <div class="deliverable-card">
+      <div class="card-header">
+        <div class="card-icon" style="background:rgba(251,146,60,0.1)">📋</div>
+        <div class="card-meta">
+          <div class="card-title">수행계획서</div>
+          <div class="card-subtitle">B04 · 고객사 제출 · ● 필수</div>
+          <div class="card-tags">
+            <span class="tag tag-essential">필수</span>
+            <span class="tag tag-submit">고객사 제출</span>
+          </div>
+        </div>
+      </div>
+      <div class="card-body">
+        <div class="resource-section">
+          <div class="res-heading">📖 작성법 & 템플릿</div>
+          <ul class="resource-list">
+            <li class="resource-item">
+              <span class="res-icon">📌</span>
+              <div class="res-content">
+                <div class="res-title">IT 프로젝트 수행계획서 구성 가이드</div>
+                <div class="res-desc">마일스톤 정의, 업무정의 기술서, 시스템 구성도, 인력운용계획, 수행 전략, 업무별 중요도 가중치 설정 등 핵심 항목별 작성 방법</div>
+                <div class="res-link-group">
+                  <a class="res-link" href="https://yozm.wishket.com/magazine/detail/1606/" target="_blank">→ 요즘IT (wishket)</a>
+                </div>
+              </div>
+            </li>
+          </ul>
+        </div>
+        <div class="note-box">💡 <strong>체크포인트:</strong> 고객 특성·난이도·분량을 포함한 수행전략 수립, 업무별 중요도 가중치 설정(기획/디자인/UX/개발)이 핵심입니다. RFP 명시 구축범위와 마일스톤이 일치해야 합니다.</div>
+        <div class="resource-section" style="margin-top:16px">
+          <div class="res-heading">📄 문서 포맷 예시</div>
+          <div class="doc-format">
+            <div class="doc-format-bar">
+              <div class="dot" style="background:#ff5f57"></div><div class="dot" style="background:#febc2e"></div><div class="dot" style="background:#28c840"></div>
+              <span class="doc-format-filename">수행계획서_[프로젝트명]_v1.0</span>
+              <span class="doc-format-ext">.pptx / .docx</span>
+            </div>
+            <div class="doc-format-body">
+              <div class="df-section">
+                <div class="df-section-title">1. 프로젝트 개요</div>
+                <div class="df-fields">
+                  <span class="df-field"><span class="req">●</span> 사업 배경 및 목적</span>
+                  <span class="df-field"><span class="req">●</span> 구축 범위(RFP 기준)</span>
+                  <span class="df-field"><span class="req">●</span> 시스템 구성도</span>
+                </div>
+              </div>
+              <hr class="df-sep">
+              <div class="df-section">
+                <div class="df-section-title">2. 수행 전략 및 체계</div>
+                <div class="df-fields">
+                  <span class="df-field"><span class="req">●</span> 수행 방법론</span>
+                  <span class="df-field"><span class="req">●</span> 파트별 업무 정의</span>
+                  <span class="df-field"><span class="req">●</span> 업무 중요도 가중치</span>
+                  <span class="df-field"><span class="req">●</span> 인력 투입 계획</span>
+                </div>
+              </div>
+              <hr class="df-sep">
+              <div class="df-section">
+                <div class="df-section-title">3. 일정 계획 (마일스톤)</div>
+                <table class="df-table">
+                  <tr><th>단계</th><th>기간</th><th>주요 산출물</th><th>비고</th></tr>
+                  <tr><td>분석</td><td class="df-sample">MM.DD~MM.DD</td><td class="df-sample">요구사항정의서</td><td>-</td></tr>
+                  <tr><td>설계</td><td class="df-sample">MM.DD~MM.DD</td><td class="df-sample">화면설계서</td><td>-</td></tr>
+                  <tr><td>구현</td><td class="df-sample">MM.DD~MM.DD</td><td class="df-sample">소스파일</td><td>-</td></tr>
+                </table>
+              </div>
+              <hr class="df-sep">
+              <div class="df-section">
+                <div class="df-section-title">4. 리스크 관리 계획</div>
+                <div class="df-fields">
+                  <span class="df-field"><span class="req">●</span> 예상 리스크 목록</span>
+                  <span class="df-field"><span class="req">●</span> 대응 방안</span>
+                  <span class="df-field"><span class="opt">◐</span> 이슈 에스컬레이션 체계</span>
+                </div>
+              </div>
+              <div class="df-note">● 필수항목 &nbsp;◐ 선택항목 &nbsp;이탤릭=샘플값</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════════════════════════════════
+       C. 분석
+  ═══════════════════════════════════════════════════════════════ -->
+  <div class="phase-section">
+    <div class="phase-header">
+      <div class="phase-pill c-c">
+        <div class="phase-dot" style="background:#facc15"></div>
+        <span class="phase-code-text" style="color:#facc15">C</span>
+      </div>
+      <span class="phase-name-text">분석 단계</span>
+      <span class="phase-desc">요구사항 수집 및 현황 분석</span>
+    </div>
+
+    <!-- WBS -->
+    <div class="deliverable-card">
+      <div class="card-header">
+        <div class="card-icon" style="background:rgba(250,204,21,0.1)">📅</div>
+        <div class="card-meta">
+          <div class="card-title">일정계획서 (WBS)</div>
+          <div class="card-subtitle">C021 · 고객사 제출 · ● 필수</div>
+          <div class="card-tags">
+            <span class="tag tag-essential">필수</span>
+            <span class="tag tag-submit">고객사 제출</span>
+          </div>
+        </div>
+      </div>
+      <div class="card-body">
+        <div class="resource-section">
+          <div class="res-heading">📖 작성법 & 툴</div>
+          <ul class="resource-list">
+            <li class="resource-item">
+              <span class="res-icon">📊</span>
+              <div class="res-content">
+                <div class="res-title">IA 작성 → WBS로 변환하는 프로세스</div>
+                <div class="res-desc">IA 작성 후 사이트맵, WBS로 변이되는 과정을 단계별로 정리. 카카오 골프예약 챗봇 역기획 실습 영상 포함</div>
+                <div class="res-link-group">
+                  <a class="res-link" href="https://yslab.kr/137" target="_blank">→ 데이먼의 PM일지</a>
+                </div>
+              </div>
+            </li>
+            <li class="resource-item">
+              <span class="res-icon">🛠️</span>
+              <div class="res-content">
+                <div class="res-title">WBS 작성 도구 추천</div>
+                <div class="res-desc">Excel / Google Sheets 기반 WBS 템플릿, Jira/Notion 연동 방식, Figma FigJam을 활용한 협업형 WBS 작성 방법</div>
+                <div class="res-link-group">
+                  <a class="res-link" href="https://yozm.wishket.com/magazine/detail/1606/" target="_blank">→ 요즘IT</a>
+                </div>
+              </div>
+            </li>
+          </ul>
+        </div>
+        <div class="resource-section" style="margin-top:4px">
+          <div class="res-heading">📄 문서 포맷 예시</div>
+          <div class="doc-format">
+            <div class="doc-format-bar">
+              <div class="dot" style="background:#ff5f57"></div><div class="dot" style="background:#febc2e"></div><div class="dot" style="background:#28c840"></div>
+              <span class="doc-format-filename">일정계획서(WBS)_[프로젝트명]_v1.0</span>
+              <span class="doc-format-ext">.xlsx</span>
+            </div>
+            <div class="doc-format-body">
+              <div class="df-section">
+                <div class="df-section-title">시트 구성</div>
+                <div class="df-fields">
+                  <span class="df-field"><span class="req">●</span> 마일스톤 요약</span>
+                  <span class="df-field"><span class="req">●</span> WBS 상세</span>
+                  <span class="df-field"><span class="opt">◐</span> 인력 투입 현황</span>
+                </div>
+              </div>
+              <hr class="df-sep">
+              <div class="df-section">
+                <div class="df-section-title">WBS 상세 시트 – 컬럼 구성</div>
+                <table class="df-table">
+                  <tr><th>No</th><th>단계</th><th>Task</th><th>Sub-Task</th><th>담당자</th><th>시작일</th><th>종료일</th><th>진척(%)</th><th>비고</th></tr>
+                  <tr><td class="df-sample">1</td><td class="df-sample">C. 분석</td><td class="df-sample">요구사항 수집</td><td class="df-sample">질의서 배포</td><td class="df-sample">기획PL</td><td class="df-sample">MM/DD</td><td class="df-sample">MM/DD</td><td class="df-sample">0%</td><td>-</td></tr>
+                </table>
+              </div>
+              <div class="df-note">● 필수 &nbsp;◐ 선택 &nbsp;이탤릭=샘플값 / 버전 업데이트 시 History 시트에 이력 기록 권장</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 요구사항 정의서 -->
+    <div class="deliverable-card">
+      <div class="card-header">
+        <div class="card-icon" style="background:rgba(250,204,21,0.1)">📋</div>
+        <div class="card-meta">
+          <div class="card-title">요구사항 정의서</div>
+          <div class="card-subtitle">C025 · 고객사 제출 · ● 필수</div>
+          <div class="card-tags">
+            <span class="tag tag-essential">필수</span>
+            <span class="tag tag-submit">고객사 제출</span>
+          </div>
+        </div>
+      </div>
+      <div class="card-body">
+        <div class="resource-section">
+          <div class="res-heading">📖 개념 & 작성법</div>
+          <ul class="resource-list">
+            <li class="resource-item">
+              <span class="res-icon">📝</span>
+              <div class="res-content">
+                <div class="res-title">요구사항 정의서 양식 및 작성법 (무료 배포)</div>
+                <div class="res-desc">요구사항 정의서 항목 구성(기능/비기능/UI 요건), 고객 확인 프로세스, 변경 관리 방법, 기능정의 항목 추가 방법 포함</div>
+                <div class="res-link-group">
+                  <a class="res-link" href="https://sweetgoing.kr/entry/%F0%9F%93%9AUIUX-%EC%9B%B9-%EC%95%B1-%EC%84%9C%EB%B9%84%EC%8A%A4-%EA%B8%B0%ED%9A%8D-%ED%99%94%EB%A9%B4%EC%84%A4%EA%B3%84%EC%97%90-%ED%95%84%EC%9A%94%ED%95%9C-%EB%AC%B8%EC%84%9C" target="_blank">→ 더블크림 블로그 (2024)</a>
+                </div>
+              </div>
+            </li>
+            <li class="resource-item">
+              <span class="res-icon">🎯</span>
+              <div class="res-content">
+                <div class="res-title">요구사항 수집 방법론 – 인터뷰 & 현업담당자 미팅</div>
+                <div class="res-desc">사전 질의서 → 현업 미팅 → 요구사항 정의서 작성 단계, 업무흐름/기능 정의/문제점 니즈 파악 질의서 구성 방법</div>
+                <div class="res-link-group">
+                  <a class="res-link" href="https://blog.opensurvey.co.kr/event/uxr-quick-qna-5/" target="_blank">→ 오픈서베이 UXR 퀵상담소</a>
+                </div>
+              </div>
+            </li>
+          </ul>
+        </div>
+        <div class="note-box">💡 <strong>2025 최신 실무 포인트:</strong> 요구사항 정의서 내 '기능정의' 항목 추가(주요 기능 정의 포함, 설계 전 개발 기능 요건 검토 요청)가 최근 실무에서 강조되고 있습니다.</div>
+        <div class="resource-section" style="margin-top:16px">
+          <div class="res-heading">📄 문서 포맷 예시</div>
+          <div class="doc-format">
+            <div class="doc-format-bar">
+              <div class="dot" style="background:#ff5f57"></div><div class="dot" style="background:#febc2e"></div><div class="dot" style="background:#28c840"></div>
+              <span class="doc-format-filename">요구사항정의서_[프로젝트명]_v1.0</span>
+              <span class="doc-format-ext">.xlsx / .docx</span>
+            </div>
+            <div class="doc-format-body">
+              <div class="df-section">
+                <div class="df-section-title">요구사항 목록 – 컬럼 구성</div>
+                <table class="df-table">
+                  <tr><th>요구사항 ID</th><th>구분</th><th>대분류</th><th>요구사항 내용</th><th>우선순위</th><th>출처</th><th>기능정의</th><th>확인자</th><th>상태</th></tr>
+                  <tr>
+                    <td class="df-sample">REQ-001</td>
+                    <td class="df-sample">기능</td>
+                    <td class="df-sample">회원관리</td>
+                    <td class="df-sample">소셜 로그인 지원</td>
+                    <td class="df-sample">상</td>
+                    <td class="df-sample">RFP p.12</td>
+                    <td class="df-sample">OAuth 2.0 기반 카카오/네이버 연동</td>
+                    <td class="df-sample">홍길동</td>
+                    <td class="df-sample">확인완료</td>
+                  </tr>
+                </table>
+              </div>
+              <hr class="df-sep">
+              <div class="df-section">
+                <div class="df-section-title">구분 유형</div>
+                <div class="df-fields">
+                  <span class="df-field">기능 요건</span>
+                  <span class="df-field">비기능 요건</span>
+                  <span class="df-field">UI/UX 요건</span>
+                  <span class="df-field">데이터 요건</span>
+                  <span class="df-field">인터페이스 요건</span>
+                  <span class="df-field">보안 요건</span>
+                </div>
+              </div>
+              <hr class="df-sep">
+              <div class="df-section">
+                <div class="df-section-title">변경 이력 관리</div>
+                <table class="df-table">
+                  <tr><th>버전</th><th>변경일</th><th>변경내용</th><th>변경자</th><th>확인자</th></tr>
+                  <tr><td class="df-sample">v1.0</td><td class="df-sample">MM/DD</td><td class="df-sample">최초 작성</td><td class="df-sample">기획팀</td><td class="df-sample">PM</td></tr>
+                </table>
+              </div>
+              <div class="df-note">우선순위: 상/중/하 or MoSCoW(Must/Should/Could/Won't) 방식 사용 &nbsp;|&nbsp; 고객 확인 후 '확인완료' 처리</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- UX/UI 수행 전략서 -->
+    <div class="deliverable-card">
+      <div class="card-header">
+        <div class="card-icon" style="background:rgba(250,204,21,0.1)">🎯</div>
+        <div class="card-meta">
+          <div class="card-title">UX/UI 수행 전략서 (분석단계 보고서)</div>
+          <div class="card-subtitle">C033 · 고객사 제출 · ◐ 권장</div>
+          <div class="card-tags">
+            <span class="tag tag-optional">권장</span>
+            <span class="tag tag-submit">고객사 제출</span>
+          </div>
+        </div>
+      </div>
+      <div class="card-body">
+        <div class="resource-section">
+          <div class="res-heading">📖 작성 가이드</div>
+          <ul class="resource-list">
+            <li class="resource-item">
+              <span class="res-icon">🔍</span>
+              <div class="res-content">
+                <div class="res-title">UX 분석 보고서 구성 – 벤치마킹 ~ 핵심과제 선정</div>
+                <div class="res-desc">포함 내용: 벤치마킹 자료 분석, 분석 인사이트, 핵심과제 선정, 수행 전략 수립, UIUX 컨셉 정의. 사용자/자사/경쟁사/디자인/환경트렌드 분석 구성</div>
+                <div class="res-link-group">
+                  <a class="res-link" href="https://story.pxd.co.kr/1814" target="_blank">→ pxd story – AI 활용 UX 프로세스 (2024)</a>
+                </div>
+              </div>
+            </li>
+            <li class="resource-item">
+              <span class="res-icon">📊</span>
+              <div class="res-content">
+                <div class="res-title">UX 전략 수립을 위한 AI 활용 방법</div>
+                <div class="res-desc">ChatGPT를 활용한 IA 구성, 사용자 시나리오 도출, 경쟁사 분석 인사이트 추출 등 실무에서 AI 활용 가속 사례 (2024 최신)</div>
+                <div class="res-link-group">
+                  <a class="res-link" href="https://story.pxd.co.kr/1814" target="_blank">→ pxd story</a>
+                  <a class="res-link" href="https://class.modulabs.co.kr/courses/1217" target="_blank">→ 모두의연구소 UX-AI 강좌</a>
+                </div>
+              </div>
+            </li>
+          </ul>
+        </div>
+        <div class="resource-section" style="margin-top:4px">
+          <div class="res-heading">📄 문서 포맷 예시</div>
+          <div class="doc-format">
+            <div class="doc-format-bar">
+              <div class="dot" style="background:#ff5f57"></div><div class="dot" style="background:#febc2e"></div><div class="dot" style="background:#28c840"></div>
+              <span class="doc-format-filename">UX_UI_수행전략서_[프로젝트명]_v1.0</span>
+              <span class="doc-format-ext">.pptx</span>
+            </div>
+            <div class="doc-format-body">
+              <div class="df-section">
+                <div class="df-section-title">목차 구성</div>
+                <div class="df-fields">
+                  <span class="df-field"><span class="req">1.</span> As-Is 분석</span>
+                  <span class="df-field"><span class="req">2.</span> 사용자 분석</span>
+                  <span class="df-field"><span class="req">3.</span> 경쟁사/벤치마킹</span>
+                  <span class="df-field"><span class="req">4.</span> 분석 인사이트</span>
+                  <span class="df-field"><span class="req">5.</span> 핵심과제 선정</span>
+                  <span class="df-field"><span class="req">6.</span> UX/UI 수행 전략</span>
+                  <span class="df-field"><span class="req">7.</span> UX/UI 컨셉 정의</span>
+                  <span class="df-field"><span class="opt">8.</span> 키스크린 초안</span>
+                </div>
+              </div>
+              <hr class="df-sep">
+              <div class="df-section">
+                <div class="df-section-title">벤치마킹 분석 슬라이드 구성</div>
+                <table class="df-table">
+                  <tr><th>항목</th><th>자사(AS-IS)</th><th>경쟁사 A</th><th>경쟁사 B</th><th>글로벌 레퍼런스</th></tr>
+                  <tr><td class="df-sample">메인화면 구조</td><td class="df-sample">이미지/설명</td><td class="df-sample">이미지/설명</td><td class="df-sample">이미지/설명</td><td class="df-sample">이미지/설명</td></tr>
+                  <tr><td class="df-sample">핵심 기능</td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
+                  <tr><td class="df-sample">UX 장단점</td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
+                </table>
+              </div>
+              <div class="df-note">◐ 분석 일정이 짧을 경우 고객사와 협의하여 키스크린 및 분석보고 제외 가능 (필수 아님)</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════════════════════════════════
+       D. 설계
+  ═══════════════════════════════════════════════════════════════ -->
+  <div class="phase-section">
+    <div class="phase-header">
+      <div class="phase-pill c-d">
+        <div class="phase-dot" style="background:#4ade80"></div>
+        <span class="phase-code-text" style="color:#4ade80">D</span>
+      </div>
+      <span class="phase-name-text">설계 단계</span>
+      <span class="phase-desc">IA ~ 화면설계서 ~ 디자인 가이드 ~ 코딩 가이드</span>
+    </div>
+
+    <!-- IA 설계서 -->
+    <div class="deliverable-card">
+      <div class="card-header">
+        <div class="card-icon" style="background:rgba(74,222,128,0.1)">🗂️</div>
+        <div class="card-meta">
+          <div class="card-title">IA 설계서 (정보구조도)</div>
+          <div class="card-subtitle">D011 연계 · ● 필수</div>
+          <div class="card-tags"><span class="tag tag-essential">필수</span></div>
+        </div>
+      </div>
+      <div class="card-body">
+        <div class="resource-section">
+          <div class="res-heading">📖 개념 & 작성법</div>
+          <ul class="resource-list">
+            <li class="resource-item">
+              <span class="res-icon">🏗️</span>
+              <div class="res-content">
+                <div class="res-title">IA, 메뉴구조도, 화면목록의 차이와 작성법</div>
+                <div class="res-desc">Depth 구조 설계, 화면 ID 부여 규칙, 개발 유형 구분, IA → 화면목록 → WBS 변환 프로세스까지 단계별 정리 (요즘IT)</div>
+                <div class="res-link-group">
+                  <a class="res-link" href="https://yozm.wishket.com/magazine/detail/1606/" target="_blank">→ 요즘IT (2022)</a>
+                </div>
+              </div>
+            </li>
+            <li class="resource-item">
+              <span class="res-icon">📹</span>
+              <div class="res-content">
+                <div class="res-title">인포메이션 아키텍처 설계 – 모바일 패턴별 IA 구성</div>
+                <div class="res-desc">모바일 IA 패턴(Hierarchy, Hub-and-spoke, Nested doll, Tabbed view) 비교 및 실제 역기획 영상 자료. 카카오 챗봇 실습 포함</div>
+                <div class="res-link-group">
+                  <a class="res-link" href="https://yslab.kr/137" target="_blank">→ 기획자 데이먼 블로그</a>
+                </div>
+              </div>
+            </li>
+            <li class="resource-item">
+              <span class="res-icon">💡</span>
+              <div class="res-content">
+                <div class="res-title">IA, 이렇게 그리면 되나요? (실무 관점 정리)</div>
+                <div class="res-desc">정보 설계의 본질부터 실무 적용까지 종합 정리. 잘못된 IA 작성 패턴과 올바른 접근법 비교</div>
+                <div class="res-link-group">
+                  <a class="res-link" href="https://seanlion.github.io/ux/21" target="_blank">→ Seung Huh's Page</a>
+                </div>
+              </div>
+            </li>
+          </ul>
+        </div>
+        <div class="resource-section">
+          <div class="res-heading">🛠️ 실무 툴 & 템플릿</div>
+          <ul class="resource-list">
+            <li class="resource-item">
+              <span class="res-icon">🎨</span>
+              <div class="res-content">
+                <div class="res-title">Figma – AI 활용 IA 자동 구성 실습</div>
+                <div class="res-desc">ChatGPT로 IA 초안 생성 → Figma에서 구조화 → 화면 설계로 연결하는 워크플로우 (pxd 실무팀 2024년 적용 사례)</div>
+                <div class="res-link-group">
+                  <a class="res-link" href="https://story.pxd.co.kr/1814" target="_blank">→ pxd story (2024)</a>
+                </div>
+              </div>
+            </li>
+          </ul>
+        </div>
+        <div class="resource-section">
+          <div class="res-heading">📄 문서 포맷 예시</div>
+          <div class="doc-format">
+            <div class="doc-format-bar">
+              <div class="dot" style="background:#ff5f57"></div><div class="dot" style="background:#febc2e"></div><div class="dot" style="background:#28c840"></div>
+              <span class="doc-format-filename">IA설계서_[프로젝트명]_v1.0</span>
+              <span class="doc-format-ext">.xlsx / Figma</span>
+            </div>
+            <div class="doc-format-body">
+              <div class="df-section">
+                <div class="df-section-title">IA 화면 목록 – 컬럼 구성</div>
+                <table class="df-table">
+                  <tr><th>화면ID</th><th>Depth1</th><th>Depth2</th><th>Depth3</th><th>화면명</th><th>URL</th><th>개발유형</th><th>플랫폼</th><th>비고</th></tr>
+                  <tr>
+                    <td class="df-sample">MN-001</td>
+                    <td class="df-sample">홈</td>
+                    <td>-</td><td>-</td>
+                    <td class="df-sample">메인홈</td>
+                    <td class="df-sample">/</td>
+                    <td class="df-sample">신규</td>
+                    <td class="df-sample">PC/MO</td>
+                    <td>-</td>
+                  </tr>
+                  <tr>
+                    <td class="df-sample">MY-001</td>
+                    <td class="df-sample">마이페이지</td>
+                    <td class="df-sample">프로필</td>
+                    <td class="df-sample">정보수정</td>
+                    <td class="df-sample">개인정보 수정</td>
+                    <td class="df-sample">/my/profile</td>
+                    <td class="df-sample">변경</td>
+                    <td class="df-sample">PC/MO</td>
+                    <td>-</td>
+                  </tr>
+                </table>
+              </div>
+              <hr class="df-sep">
+              <div class="df-section">
+                <div class="df-section-title">개발유형 범례</div>
+                <div class="df-fields">
+                  <span class="df-field">신규(N)</span>
+                  <span class="df-field">변경(C)</span>
+                  <span class="df-field">유지(K)</span>
+                  <span class="df-field">삭제(D)</span>
+                </div>
+              </div>
+              <div class="df-note">화면ID는 [메뉴약어]-[3자리숫자] 형식 권장 &nbsp;|&nbsp; Depth는 최대 4단계까지 사용</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- UX 공통 가이드 -->
+    <div class="deliverable-card">
+      <div class="card-header">
+        <div class="card-icon" style="background:rgba(74,222,128,0.1)">📐</div>
+        <div class="card-meta">
+          <div class="card-title">UX 공통 가이드 (UI 컴포넌트 가이드)</div>
+          <div class="card-subtitle">화면설계 템플릿 포함 · ● 필수</div>
+          <div class="card-tags"><span class="tag tag-essential">필수</span><span class="tag tag-submit">기획 제출</span></div>
+        </div>
+      </div>
+      <div class="card-body">
+        <div class="resource-section">
+          <div class="res-heading">📖 공식 가이드 & 레퍼런스</div>
+          <ul class="resource-list">
+            <li class="resource-item">
+              <span class="res-icon">🏛️</span>
+              <div class="res-content">
+                <div class="res-title">한국 디자인 시스템 (KRDS) – 디지털 정부서비스 UI/UX 가이드라인 2025</div>
+                <div class="res-desc">2025.1.16 "디지털 정부서비스 UI/UX 가이드라인"에서 KRDS로 개편. 색상·타이포그래피·레이아웃·아이콘·컴포넌트 7종·서비스 패턴 6종 포함. 공공기관 표준 레퍼런스</div>
+                <div class="res-link-group">
+                  <a class="res-link" href="https://www.krds.go.kr" target="_blank">→ KRDS 공식 사이트</a>
+                  <a class="res-link" href="https://news.hada.io/topic?id=18866" target="_blank">→ GeekNews 소개</a>
+                </div>
+              </div>
+            </li>
+            <li class="resource-item">
+              <span class="res-icon">📱</span>
+              <div class="res-content">
+                <div class="res-title">플랫폼별 디자인 가이드라인 – Apple HIG / Material Design 3</div>
+                <div class="res-desc">iOS·macOS HIG, Android Material Design 3의 최신 컴포넌트·패턴·접근성 기준 정리. UX 공통 가이드 작성 시 플랫폼 표준과의 정합성 확인 필수</div>
+                <div class="res-link-group">
+                  <a class="res-link" href="https://developer.apple.com/design/human-interface-guidelines/" target="_blank">→ Apple HIG</a>
+                  <a class="res-link" href="https://m3.material.io/" target="_blank">→ Material Design 3</a>
+                  <a class="res-link" href="https://angryfire.kr/entry/UXUI-%EB%94%94%EC%9E%90%EC%9D%B8-%EA%B0%80%EC%9D%B4%EB%93%9C-%EB%94%94%EC%9E%90%EC%9D%B8-%EC%8B%9C%EC%8A%A4%ED%85%9C-%E2%80%93-%EC%8B%A4%EB%AC%B4%EC%9E%90%EB%A5%BC-%EC%9C%84%ED%95%9C-%ED%95%84%EC%88%98-%EB%A0%88%ED%8D%BC%EB%9F%B0%EC%8A%A4" target="_blank">→ 실무 필수 레퍼런스 정리 (2025)</a>
+                </div>
+              </div>
+            </li>
+          </ul>
+        </div>
+        <div class="resource-section">
+          <div class="res-heading">🛠️ 디자인 시스템 구축 가이드</div>
+          <ul class="resource-list">
+            <li class="resource-item">
+              <span class="res-icon">🔧</span>
+              <div class="res-content">
+                <div class="res-title">디자인 시스템 가이드 작성 비법 (토스/네이버 사례)</div>
+                <div class="res-desc">디자인 시스템의 구성 요소 정의, 컴포넌트 문서화 방법, 토스·네이버 디자인 시스템 적용 사례, 작업 시간 단축 효과 분석</div>
+                <div class="res-link-group">
+                  <a class="res-link" href="https://www.elancer.co.kr/blog/detail/268" target="_blank">→ 이랜서 블로그 (2024)</a>
+                </div>
+              </div>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- 화면설계서 -->
+    <div class="deliverable-card">
+      <div class="card-header">
+        <div class="card-icon" style="background:rgba(74,222,128,0.1)">🖥️</div>
+        <div class="card-meta">
+          <div class="card-title">화면설계서 (스토리보드)</div>
+          <div class="card-subtitle">D 설계 핵심 산출물 · ● 필수</div>
+          <div class="card-tags"><span class="tag tag-essential">필수</span></div>
+        </div>
+      </div>
+      <div class="card-body">
+        <div class="resource-section">
+          <div class="res-heading">📖 개념 & 작성법</div>
+          <ul class="resource-list">
+            <li class="resource-item">
+              <span class="res-icon">📐</span>
+              <div class="res-content">
+                <div class="res-title">화면설계서 vs 와이어프레임 vs 프로토타입 차이</div>
+                <div class="res-desc">각 용어의 정확한 정의와 국내 실무에서의 사용 맥락 차이. PPT 기반 스토리보드가 여전히 SI/에이전시 표준인 이유와 Figma/Axure 전환 트렌드</div>
+                <div class="res-link-group">
+                  <a class="res-link" href="https://yslab.kr/74" target="_blank">→ 데이먼의 PM일지 (업데이트)</a>
+                  <a class="res-link" href="https://yozm.wishket.com/magazine/detail/1112/" target="_blank">→ 요즘IT 스토리보드 가이드</a>
+                </div>
+              </div>
+            </li>
+            <li class="resource-item">
+              <span class="res-icon">📋</span>
+              <div class="res-content">
+                <div class="res-title">초보자를 위한 스토리보드 작성 팁 (요즘IT)</div>
+                <div class="res-desc">표지 → History → IA → Flow Chart → 화면 설계 → 정책 기술 순의 구성 요소별 작성법. 화면 ID 부여 규칙, Description 작성 요령, 정책/케이스 기술 방법</div>
+                <div class="res-link-group">
+                  <a class="res-link" href="https://yozm.wishket.com/magazine/detail/1112/" target="_blank">→ 요즘IT (2025.12 업데이트)</a>
+                </div>
+              </div>
+            </li>
+            <li class="resource-item">
+              <span class="res-icon">🏢</span>
+              <div class="res-content">
+                <div class="res-title">스토리보드 화면설계서 v1.0 양식 공유 (야메군)</div>
+                <div class="res-desc">스타트업 환경에 최적화된 간결한 화면설계서 양식. 표지·History·Flow·화면설계·정책 파트 구성과 버전 관리 방법 포함</div>
+                <div class="res-link-group">
+                  <a class="res-link" href="https://yamestyle.com/431" target="_blank">→ 야메군 블로그</a>
+                </div>
+              </div>
+            </li>
+          </ul>
+        </div>
+        <div class="resource-section">
+          <div class="res-heading">🛠️ 무료 템플릿 & 도구</div>
+          <ul class="resource-list">
+            <li class="resource-item">
+              <span class="res-icon">🎨</span>
+              <div class="res-content">
+                <div class="res-title">Figma Community – Quick UXUI Wireframe Templates v3.0 (2023)</div>
+                <div class="res-desc">그리드 가이드, 2가지 디스크립션 양식 포함. 기획자와 디자이너 공동 사용 가능한 화면설계서 Figma 파일 무료 배포</div>
+                <div class="res-link-group">
+                  <a class="res-link" href="https://www.figma.com/community/file/1196061641467214979/2023-uxui-quick-uxui-wireframe-templates" target="_blank">→ Figma Community</a>
+                </div>
+              </div>
+            </li>
+            <li class="resource-item">
+              <span class="res-icon">📄</span>
+              <div class="res-content">
+                <div class="res-title">이랜서 무료 스토리보드 PPT 양식 (IT 경력 20년 전문가)</div>
+                <div class="res-desc">사용자 화면 + 관리자 화면 구분 양식. 다양한 분야 활용 가능. 이랜서 회원가입 후 무료 신청 가능</div>
+                <div class="res-link-group">
+                  <a class="res-link" href="https://www.elancer.co.kr/blog/detail/66" target="_blank">→ 이랜서 블로그</a>
+                </div>
+              </div>
+            </li>
+          </ul>
+        </div>
+        <div class="note-box">💡 <strong>실무 팁:</strong> 역기획(기존 서비스 분해) 실습이 화면설계서 작성 실력 향상에 가장 효과적입니다. 표지 → IA → 화면 설계 순으로 30P 이상이면 PPT보다 Figma 권장.</div>
+        <div class="resource-section" style="margin-top:16px">
+          <div class="res-heading">📄 문서 포맷 예시</div>
+          <div class="doc-format">
+            <div class="doc-format-bar">
+              <div class="dot" style="background:#ff5f57"></div><div class="dot" style="background:#febc2e"></div><div class="dot" style="background:#28c840"></div>
+              <span class="doc-format-filename">화면설계서_[업무단위]_v1.0</span>
+              <span class="doc-format-ext">.pptx / Figma</span>
+            </div>
+            <div class="doc-format-body">
+              <div class="df-section">
+                <div class="df-section-title">문서 구성 순서</div>
+                <div class="df-fields">
+                  <span class="df-field"><span class="req">1.</span> 표지</span>
+                  <span class="df-field"><span class="req">2.</span> 변경 이력(History)</span>
+                  <span class="df-field"><span class="req">3.</span> IA / 화면목록</span>
+                  <span class="df-field"><span class="req">4.</span> Flow Chart</span>
+                  <span class="df-field"><span class="req">5.</span> 화면 설계</span>
+                  <span class="df-field"><span class="opt">6.</span> 정책 정의서</span>
+                </div>
+              </div>
+              <hr class="df-sep">
+              <div class="df-section">
+                <div class="df-section-title">화면 설계 슬라이드 1장 구성</div>
+                <table class="df-table">
+                  <tr><th colspan="2">레이아웃 영역</th><th>Description 영역</th></tr>
+                  <tr>
+                    <td style="width:40%" colspan="2">
+                      <div style="border:1px dashed #2a2f3f;padding:8px;text-align:center;color:#4a5268;font-size:9px">
+                        [화면 ID: MN-001]<br>화면명: 메인홈<br><br>
+                        ┌─────────────────┐<br>
+                        │  헤더 / GNB     │<br>
+                        ├─────────────────┤<br>
+                        │  메인 콘텐츠    │<br>
+                        │  영역           │<br>
+                        ├─────────────────┤<br>
+                        │  푸터           │<br>
+                        └─────────────────┘
+                      </div>
+                    </td>
+                    <td style="vertical-align:top">
+                      <div style="font-size:9px;color:#7580a0;line-height:1.8">
+                        ① [기능명] 설명<br>
+                        &nbsp;&nbsp;&nbsp;- 케이스 A: ~<br>
+                        &nbsp;&nbsp;&nbsp;- 케이스 B: ~<br>
+                        ② [버튼/링크] 설명<br>
+                        &nbsp;&nbsp;&nbsp;- 클릭 시: ~페이지 이동<br>
+                        ③ 공통 정책 적용 여부
+                      </div>
+                    </td>
+                  </tr>
+                </table>
+              </div>
+              <hr class="df-sep">
+              <div class="df-section">
+                <div class="df-section-title">변경 이력(History) 컬럼</div>
+                <table class="df-table">
+                  <tr><th>버전</th><th>변경일</th><th>변경내용</th><th>변경자</th><th>확인자</th></tr>
+                  <tr><td class="df-sample">v0.1</td><td class="df-sample">MM/DD</td><td class="df-sample">초안 작성</td><td class="df-sample">기획PL</td><td class="df-sample">PM</td></tr>
+                  <tr><td class="df-sample">v1.0</td><td class="df-sample">MM/DD</td><td class="df-sample">1차 검토 반영</td><td class="df-sample">기획PL</td><td class="df-sample">고객담당자</td></tr>
+                </table>
+              </div>
+              <div class="df-note">화면 ID 형식: [메뉴약어]-[3자리숫자] (예: MN-001) &nbsp;|&nbsp; 버전: 초안 v0.1 → 고객 확인 후 v1.0</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 디자인 컨셉정의서 -->
+    <div class="deliverable-card">
+      <div class="card-header">
+        <div class="card-icon" style="background:rgba(74,222,128,0.1)">🎨</div>
+        <div class="card-meta">
+          <div class="card-title">디자인 컨셉정의서</div>
+          <div class="card-subtitle">D 설계 · ● 필수</div>
+          <div class="card-tags"><span class="tag tag-essential">필수</span></div>
+        </div>
+      </div>
+      <div class="card-body">
+        <div class="resource-section">
+          <div class="res-heading">📖 작성법 & 레퍼런스</div>
+          <ul class="resource-list">
+            <li class="resource-item">
+              <span class="res-icon">✏️</span>
+              <div class="res-content">
+                <div class="res-title">UX/UI 디자인 컨셉 정의 프로세스</div>
+                <div class="res-desc">사용자 분석 인사이트 → 디자인 키워드 추출 → 무드보드 구성 → 컨셉 방향성 정의 → 컬러/타이포/레이아웃 초안까지 단계별 가이드</div>
+                <div class="res-link-group">
+                  <a class="res-link" href="https://designlog.org/2512792" target="_blank">→ 디자인로그 – 스타일 가이드 제작</a>
+                </div>
+              </div>
+            </li>
+            <li class="resource-item">
+              <span class="res-icon">🌐</span>
+              <div class="res-content">
+                <div class="res-title">행정안전부 디지털 정부서비스 UI/UX 가이드라인 (2024.02)</div>
+                <div class="res-desc">스타일가이드 제공, 컴포넌트 표준, 서비스 패턴 포함. 공공기관 프로젝트의 디자인 컨셉 방향 설정 시 기준 문서로 활용</div>
+                <div class="res-link-group">
+                  <a class="res-link" href="https://www.mois.go.kr/frt/bbs/type001/commonSelectBoardArticle.do?bbsId=BBSMSTR_000000000015&nttId=108578" target="_blank">→ 행정안전부 공식 배포</a>
+                </div>
+              </div>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- 디자인 스타일가이드 -->
+    <div class="deliverable-card">
+      <div class="card-header">
+        <div class="card-icon" style="background:rgba(74,222,128,0.1)">🎭</div>
+        <div class="card-meta">
+          <div class="card-title">디자인 스타일가이드</div>
+          <div class="card-subtitle">D 설계 · ● 필수</div>
+          <div class="card-tags"><span class="tag tag-essential">필수</span></div>
+        </div>
+      </div>
+      <div class="card-body">
+        <div class="resource-section">
+          <div class="res-heading">📖 개념 & 구성 방법</div>
+          <ul class="resource-list">
+            <li class="resource-item">
+              <span class="res-icon">📚</span>
+              <div class="res-content">
+                <div class="res-title">브랜드 UX를 향상시키기 위한 스타일 가이드 만드는 방법</div>
+                <div class="res-desc">컬러 팔레트, 타이포그래피, 그리드 시스템, UI 컴포넌트, 아이콘 가이드, 인터랙션 정의 방법. 일관된 디자인 시스템 구축 원칙</div>
+                <div class="res-link-group">
+                  <a class="res-link" href="https://designlog.org/2512792" target="_blank">→ 디자인로그</a>
+                </div>
+              </div>
+            </li>
+            <li class="resource-item">
+              <span class="res-icon">🏢</span>
+              <div class="res-content">
+                <div class="res-title">KRDS (한국 디자인 시스템) – 스타일 5종 컴포넌트 7종 패턴 8종</div>
+                <div class="res-desc">색상(Color), 타이포그래피, 형태(Shape), 레이아웃, 아이콘 5종 스타일 + 헤더/푸터/메인메뉴 등 7종 컴포넌트. 2025년 최신 공공 표준</div>
+                <div class="res-link-group">
+                  <a class="res-link" href="https://www.krds.go.kr" target="_blank">→ KRDS 공식</a>
+                </div>
+              </div>
+            </li>
+            <li class="resource-item">
+              <span class="res-icon">💼</span>
+              <div class="res-content">
+                <div class="res-title">디자인 시스템 구축 사례 및 실무 작성 비법</div>
+                <div class="res-desc">토스 디자인 시스템, 네이버 디자인 시스템 사례 분석. 디자인 시스템을 통한 협업 효율화와 일관성 향상 전략</div>
+                <div class="res-link-group">
+                  <a class="res-link" href="https://www.elancer.co.kr/blog/detail/268" target="_blank">→ 이랜서 블로그 (2024)</a>
+                </div>
+              </div>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- 코딩/UI 스크립트 가이드 -->
+    <div class="deliverable-card">
+      <div class="card-header">
+        <div class="card-icon" style="background:rgba(74,222,128,0.1)">⌨️</div>
+        <div class="card-meta">
+          <div class="card-title">코딩/UI 스크립트 가이드</div>
+          <div class="card-subtitle">E031 연계 · ● 필수</div>
+          <div class="card-tags"><span class="tag tag-essential">필수</span><span class="tag tag-submit">기획 제출</span></div>
+        </div>
+      </div>
+      <div class="card-body">
+        <div class="resource-section">
+          <div class="res-heading">📖 작성법 & 레퍼런스</div>
+          <ul class="resource-list">
+            <li class="resource-item">
+              <span class="res-icon">🌐</span>
+              <div class="res-content">
+                <div class="res-title">퍼블리싱 코딩 가이드 – HTML/CSS/JS 표준 명세</div>
+                <div class="res-desc">파일 구조 규칙, 클래스 네이밍 컨벤션, 공통 컴포넌트 마크업 가이드, 반응형 브레이크포인트, 웹접근성 마크업 연동 방법</div>
+                <div class="res-link-group">
+                  <a class="res-link" href="https://a11ykr.github.io/kwcag22/" target="_blank">→ KWCAG 2.2 구현 기준</a>
+                  <a class="res-link" href="https://uxkm.io/accessibility/a11y/04-a11yCag/02-kwcag" target="_blank">→ UXKM 접근성 가이드</a>
+                </div>
+              </div>
+            </li>
+          </ul>
+        </div>
+        <div class="note-box">💡 코딩 가이드는 디자인스타일가이드와 세트로 작성하며, PC/모바일 각각 분리 배포합니다. 웹접근성 검수 항목(대체텍스트, 키보드 탐색, 색 대비 등)을 반드시 포함해야 합니다.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════════════════════════════════
+       E. 구현
+  ═══════════════════════════════════════════════════════════════ -->
+  <div class="phase-section">
+    <div class="phase-header">
+      <div class="phase-pill c-e">
+        <div class="phase-dot" style="background:#22d3ee"></div>
+        <span class="phase-code-text" style="color:#22d3ee">E</span>
+      </div>
+      <span class="phase-name-text">구현 단계</span>
+      <span class="phase-desc">테스트 계획 ~ 사용성테스트 ~ 웹접근성 검수</span>
+    </div>
+
+    <!-- 테스트 계획서 -->
+    <div class="deliverable-card">
+      <div class="card-header">
+        <div class="card-icon" style="background:rgba(34,211,238,0.1)">🧪</div>
+        <div class="card-meta">
+          <div class="card-title">테스트 계획서 / 단위·통합 테스트 케이스</div>
+          <div class="card-subtitle">E05, E042, E061 · ● 필수 / ◐ 권장</div>
+          <div class="card-tags"><span class="tag tag-essential">필수</span><span class="tag tag-submit">기획 배포</span></div>
+        </div>
+      </div>
+      <div class="card-body">
+        <div class="resource-section">
+          <div class="res-heading">📖 테스트 계획서 구성 가이드</div>
+          <ul class="resource-list">
+            <li class="resource-item">
+              <span class="res-icon">📋</span>
+              <div class="res-content">
+                <div class="res-title">통합테스트 계획서 작성법</div>
+                <div class="res-desc">통합테스트·보안테스트·모의해킹·스트레스테스트·사용성테스트·웹접근성 검수 등의 통과 기준과 절차, 방법 포함. 기획 파트의 배포 역할 정의</div>
+                <div class="res-link-group">
+                  <a class="res-link" href="https://yozm.wishket.com/magazine/detail/1112/" target="_blank">→ 요즘IT</a>
+                </div>
+              </div>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- 사용성테스트 -->
+    <div class="deliverable-card">
+      <div class="card-header">
+        <div class="card-icon" style="background:rgba(34,211,238,0.1)">👤</div>
+        <div class="card-meta">
+          <div class="card-title">사용성테스트 (UT)</div>
+          <div class="card-subtitle">E09 · ● 필수</div>
+          <div class="card-tags"><span class="tag tag-essential">필수</span><span class="tag tag-submit">기획 주관</span></div>
+        </div>
+      </div>
+      <div class="card-body">
+        <div class="resource-section">
+          <div class="res-heading">📖 방법론 & 가이드</div>
+          <ul class="resource-list">
+            <li class="resource-item">
+              <span class="res-icon">🔬</span>
+              <div class="res-content">
+                <div class="res-title">사용성 테스트 기본 가이드 (RightBrainLAB)</div>
+                <div class="res-desc">사용성 테스트 단계별 프로세스(계획→참여자 모집→시나리오 설계→진행→결과 분석), 올바른 Task 설계 방법, 모더레이터 역할</div>
+                <div class="res-link-group">
+                  <a class="res-link" href="https://blog.rightbrain.co.kr/?p=12830" target="_blank">→ RightBrain LAB (2023)</a>
+                </div>
+              </div>
+            </li>
+            <li class="resource-item">
+              <span class="res-icon">📊</span>
+              <div class="res-content">
+                <div class="res-title">사용성 테스트 종류와 방법론 (Medium – 정리)</div>
+                <div class="res-desc">Moderated/Unmoderated UT, 원격/대면 방식 비교, 5초 테스트, A/B 테스트와의 차이. 가설 설계 후 UT 진행하는 올바른 순서 (2024)</div>
+                <div class="res-link-group">
+                  <a class="res-link" href="https://medium.com/diby-uxresearchops/%EC%82%AC%EC%9A%A9%EC%84%B1-%ED%85%8C%EC%8A%A4%ED%8A%B8-usability-test-%EC%9D%98-%EC%A4%91%EC%9A%94%EC%84%B1%EA%B3%BC-%EC%A2%85%EB%A5%98-580d77f2e3db" target="_blank">→ Medium (2024)</a>
+                </div>
+              </div>
+            </li>
+            <li class="resource-item">
+              <span class="res-icon">🎓</span>
+              <div class="res-content">
+                <div class="res-title">사용성 테스트 앞서 가설 설계하라 (전코치)</div>
+                <div class="res-desc">Task 기반 UT 설계 방법론, 가설 수립 → 과업 시나리오 작성 → 결과 분석 프로세스. 실무 기획자/UX 리서처 대상 뉴스레터 시리즈 (2024)</div>
+                <div class="res-link-group">
+                  <a class="res-link" href="https://maily.so/uiux/posts/92ze908noep" target="_blank">→ 전코치 UX 방법론 뉴스레터</a>
+                </div>
+              </div>
+            </li>
+            <li class="resource-item">
+              <span class="res-icon">💬</span>
+              <div class="res-content">
+                <div class="res-title">UXR 퀵상담소 – UT vs IDI(인터뷰) 차이 및 운영법</div>
+                <div class="res-desc">오픈서베이 UX 리서치팀의 실무 Q&A 정리. UT Task 설계, 참여자 모집, 결과 해석 방법. 무료 UX 리서치 가이드북 배포</div>
+                <div class="res-link-group">
+                  <a class="res-link" href="https://blog.opensurvey.co.kr/event/uxr-quick-qna-5/" target="_blank">→ 오픈서베이 블로그</a>
+                </div>
+              </div>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- 웹접근성 검수 -->
+    <div class="deliverable-card">
+      <div class="card-header">
+        <div class="card-icon" style="background:rgba(34,211,238,0.1)">♿</div>
+        <div class="card-meta">
+          <div class="card-title">웹접근성 검수 (KWCAG 2.2)</div>
+          <div class="card-subtitle">E10 · ● 필수</div>
+          <div class="card-tags"><span class="tag tag-essential">필수</span></div>
+        </div>
+      </div>
+      <div class="card-body">
+        <div class="resource-section">
+          <div class="res-heading">📖 공식 기준 & 가이드</div>
+          <ul class="resource-list">
+            <li class="resource-item">
+              <span class="res-icon">🏛️</span>
+              <div class="res-content">
+                <div class="res-title">한국형 웹 콘텐츠 접근성 지침 KWCAG 2.2 (2022.12.28 개정)</div>
+                <div class="res-desc">4원칙(인식·운용·이해·견고성), 14개 지침, 33개 검사항목. 기존 24개 → 33개 확대, 모바일·터치 조작·포커스 가시성 항목 신규 추가. 공공기관은 2026년까지 의무 준수</div>
+                <div class="res-link-group">
+                  <a class="res-link" href="https://a11ykr.github.io/kwcag22/" target="_blank">→ KWCAG 2.2 비공식 번역</a>
+                  <a class="res-link" href="https://www.websoul.co.kr/accessibility/WA_guide22.asp" target="_blank">→ 웹소울랩 정리</a>
+                  <a class="res-link" href="https://uxkm.io/accessibility/a11y/04-a11yCag/02-kwcag" target="_blank">→ UXKM 가이드</a>
+                </div>
+              </div>
+            </li>
+            <li class="resource-item">
+              <span class="res-icon">✅</span>
+              <div class="res-content">
+                <div class="res-title">웹접근성 자체점검표 (서울시 공개)</div>
+                <div class="res-desc">KWCAG 기반 웹접근성 진단 체크리스트 및 웹표준(HTML/CSS) 호환성 점검 체크리스트. 웹접근성 품질마크 인증 프로세스 안내</div>
+                <div class="res-link-group">
+                  <a class="res-link" href="https://news.seoul.go.kr/gov/archives/47485" target="_blank">→ 서울시 정보통신접근성 가이드</a>
+                </div>
+              </div>
+            </li>
+            <li class="resource-item">
+              <span class="res-icon">📜</span>
+              <div class="res-content">
+                <div class="res-title">웹접근성 품질마크 인증 기준 및 절차 (한국디지털접근성진흥원)</div>
+                <div class="res-desc">1차 서면심사 → 2차 전문가 심사 → 3차 사용자 심사. 모든 장애유형 과업 성공률 100%, 수행시간 15분 이내 기준. 2025년 수수료 변경 안내</div>
+                <div class="res-link-group">
+                  <a class="res-link" href="http://www.kwacc.or.kr/Accessibility/Certification" target="_blank">→ 한국디지털접근성진흥원</a>
+                </div>
+              </div>
+            </li>
+            <li class="resource-item">
+              <span class="res-icon">📝</span>
+              <div class="res-content">
+                <div class="res-title">KWCAG 2.1 vs 2.2 주요 변경사항 정리 (pxd tech)</div>
+                <div class="res-desc">키보드 포커스 가시성 강화, 모션 애니메이션 사용자 제어, 시간 제한 옵션 확대, 인증 과정 접근성 추가. 실무 개발자·퍼블리셔 대상 적용 가이드</div>
+                <div class="res-link-group">
+                  <a class="res-link" href="https://tech.pxd.co.kr/post/%ED%95%9C%EA%B5%AD%ED%98%95-%EC%9B%B9-%EC%BD%98%ED%85%90%EC%B8%A0-%EC%A0%91%EA%B7%BC%EC%84%B1-%EC%A7%80%EC%B9%A8-2-2-228" target="_blank">→ pxd tech blog</a>
+                  <a class="res-link" href="https://jinbytes.com/entry/KWCAG-2025-%EC%9B%B9-%EC%A0%91%EA%B7%BC%EC%84%B1-%EC%B5%9C%EC%8B%A0-%EA%B8%B0%EC%A4%80-%EC%A0%95%EB%A6%AC" target="_blank">→ KWCAG 2025 최신 정리</a>
+                </div>
+              </div>
+            </li>
+          </ul>
+        </div>
+        <div class="note-box">💡 <strong>2025 실무 포인트:</strong> 행정안전부는 전자정부 웹사이트의 KWCAG 2.2 준수를 2026년까지 의무화했습니다. 민간 대기업·금융권도 자발적으로 KWCAG 2.2를 도입하는 추세이므로, 신규 프로젝트는 2.2 기준으로 설계·검수해야 합니다.</div>
+        <div class="resource-section" style="margin-top:16px">
+          <div class="res-heading">📄 문서 포맷 예시</div>
+          <div class="doc-format">
+            <div class="doc-format-bar">
+              <div class="dot" style="background:#ff5f57"></div><div class="dot" style="background:#febc2e"></div><div class="dot" style="background:#28c840"></div>
+              <span class="doc-format-filename">웹접근성검수결과서_[프로젝트명]_v1.0</span>
+              <span class="doc-format-ext">.xlsx</span>
+            </div>
+            <div class="doc-format-body">
+              <div class="df-section">
+                <div class="df-section-title">검수 결과 시트 – 컬럼 구성 (KWCAG 2.2 기준)</div>
+                <table class="df-table">
+                  <tr><th>검사항목 ID</th><th>원칙</th><th>지침</th><th>검사항목명</th><th>대상URL</th><th>판정</th><th>결함내용</th><th>조치결과</th></tr>
+                  <tr>
+                    <td class="df-sample">1.1.1</td>
+                    <td class="df-sample">인식</td>
+                    <td class="df-sample">대체텍스트</td>
+                    <td class="df-sample">적절한 대체텍스트 제공</td>
+                    <td class="df-sample">/main</td>
+                    <td class="df-sample" style="color:#4ade80">준수</td>
+                    <td>-</td>
+                    <td>-</td>
+                  </tr>
+                  <tr>
+                    <td class="df-sample">2.1.1</td>
+                    <td class="df-sample">운용</td>
+                    <td class="df-sample">키보드접근성</td>
+                    <td class="df-sample">키보드 사용 보장</td>
+                    <td class="df-sample">/board</td>
+                    <td class="df-sample" style="color:#f472b6">미준수</td>
+                    <td class="df-sample">탭 포커스 누락</td>
+                    <td class="df-sample">수정완료</td>
+                  </tr>
+                </table>
+              </div>
+              <hr class="df-sep">
+              <div class="df-section">
+                <div class="df-section-title">KWCAG 2.2 검사항목 분류 (33개)</div>
+                <div class="df-fields">
+                  <span class="df-field">1원칙 인식성 (7개)</span>
+                  <span class="df-field">2원칙 운용성 (11개)</span>
+                  <span class="df-field">3원칙 이해성 (9개)</span>
+                  <span class="df-field">4원칙 견고성 (6개)</span>
+                </div>
+              </div>
+              <div class="df-note">판정: 준수 / 미준수 / 해당없음 &nbsp;|&nbsp; 미준수 항목은 결함 상세 및 조치결과 반드시 기록</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════════════════════════════════
+       F. 이관/오픈
+  ═══════════════════════════════════════════════════════════════ -->
+  <div class="phase-section">
+    <div class="phase-header">
+      <div class="phase-pill c-f">
+        <div class="phase-dot" style="background:#818cf8"></div>
+        <span class="phase-code-text" style="color:#818cf8">F</span>
+      </div>
+      <span class="phase-name-text">이관/오픈 단계</span>
+      <span class="phase-desc">사용자 교육 및 매뉴얼 제작</span>
+    </div>
+
+    <div class="deliverable-card">
+      <div class="card-header">
+        <div class="card-icon" style="background:rgba(129,140,248,0.1)">📗</div>
+        <div class="card-meta">
+          <div class="card-title">사용자 매뉴얼 / 관리자 매뉴얼</div>
+          <div class="card-subtitle">F042, F043 · 고객사 제출 · ● / ◐</div>
+          <div class="card-tags">
+            <span class="tag tag-essential">필수</span>
+            <span class="tag tag-submit">기획 주관</span>
+          </div>
+        </div>
+      </div>
+      <div class="card-body">
+        <div class="resource-section">
+          <div class="res-heading">📖 작성법 & 구성 가이드</div>
+          <ul class="resource-list">
+            <li class="resource-item">
+              <span class="res-icon">📘</span>
+              <div class="res-content">
+                <div class="res-title">사용자 매뉴얼 작성 방법 – UX 기획자 관점</div>
+                <div class="res-desc">화면설계서 기반 사용자 매뉴얼 전환 방법, 주요 기능 흐름 중심 구성, 스크린샷 캡처 기준, 웹접근성 운영 매뉴얼 통합 방법</div>
+                <div class="res-link-group">
+                  <a class="res-link" href="https://sweetgoing.kr/entry/%F0%9F%93%9AUIUX-%EC%9B%B9-%EC%95%B1-%EC%84%9C%EB%B9%84%EC%8A%A4-%EA%B8%B0%ED%9A%8D-%ED%99%94%EB%A9%B4%EC%84%A4%EA%B3%84%EC%97%90-%ED%95%84%EC%9A%94%ED%95%9C-%EB%AC%B8%EC%84%9C" target="_blank">→ 기획 문서 가이드</a>
+                </div>
+              </div>
+            </li>
+          </ul>
+        </div>
+        <div class="note-box">💡 관리자 매뉴얼은 웹접근성 운영 파트를 포함해야 하며(KWCAG 운영 가이드 첨부), 사용자 교육은 고객사에서 직접 진행하는 경우가 있으므로 사전에 역할 확인이 필요합니다.</div>
+        <div class="resource-section" style="margin-top:16px">
+          <div class="res-heading">📄 문서 포맷 예시</div>
+          <div class="doc-format">
+            <div class="doc-format-bar">
+              <div class="dot" style="background:#ff5f57"></div><div class="dot" style="background:#febc2e"></div><div class="dot" style="background:#28c840"></div>
+              <span class="doc-format-filename">사용자매뉴얼_[시스템명]_v1.0</span>
+              <span class="doc-format-ext">.docx / .pdf</span>
+            </div>
+            <div class="doc-format-body">
+              <div class="df-section">
+                <div class="df-section-title">목차 구성 (사용자 매뉴얼)</div>
+                <div class="df-fields">
+                  <span class="df-field"><span class="req">1.</span> 시스템 개요</span>
+                  <span class="df-field"><span class="req">2.</span> 접속 및 로그인</span>
+                  <span class="df-field"><span class="req">3.</span> 주요 기능별 사용법</span>
+                  <span class="df-field"><span class="req">4.</span> FAQ / 자주 묻는 질문</span>
+                  <span class="df-field"><span class="opt">5.</span> 오류 메시지 대응 방법</span>
+                </div>
+              </div>
+              <hr class="df-sep">
+              <div class="df-section">
+                <div class="df-section-title">기능 설명 페이지 구성</div>
+                <table class="df-table">
+                  <tr><th>구성요소</th><th>내용</th></tr>
+                  <tr><td>기능명</td><td class="df-sample">게시글 등록</td></tr>
+                  <tr><td>접근 경로</td><td class="df-sample">마이페이지 &gt; 글쓰기 버튼 클릭</td></tr>
+                  <tr><td>화면 캡처</td><td class="df-sample">[스크린샷 삽입]</td></tr>
+                  <tr><td>단계별 설명</td><td class="df-sample">① 제목 입력 → ② 내용 작성 → ③ 저장 클릭</td></tr>
+                  <tr><td>주의사항</td><td class="df-sample">첨부파일 최대 10MB 제한</td></tr>
+                </table>
+              </div>
+              <div class="df-note">관리자 매뉴얼은 별도 파일로 작성 &nbsp;|&nbsp; 웹접근성 운영 가이드(KWCAG 운영편) 첨부 필수</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════════════════════════════════
+       G. 종료
+  ═══════════════════════════════════════════════════════════════ -->
+  <div class="phase-section">
+    <div class="phase-header">
+      <div class="phase-pill c-g">
+        <div class="phase-dot" style="background:#f43f5e"></div>
+        <span class="phase-code-text" style="color:#f43f5e">G</span>
+      </div>
+      <span class="phase-name-text">종료 단계</span>
+      <span class="phase-desc">완료보고 및 사후관리</span>
+    </div>
+
+    <div class="deliverable-card">
+      <div class="card-header">
+        <div class="card-icon" style="background:rgba(244,63,94,0.1)">✅</div>
+        <div class="card-meta">
+          <div class="card-title">완료보고서 / 검수확인서</div>
+          <div class="card-subtitle">G012, G013 · 고객사 제출 · ● 필수</div>
+          <div class="card-tags"><span class="tag tag-essential">필수</span><span class="tag tag-submit">고객사 제출</span></div>
+        </div>
+      </div>
+      <div class="card-body">
+        <div class="resource-section">
+          <div class="res-heading">📖 작성 가이드</div>
+          <ul class="resource-list">
+            <li class="resource-item">
+              <span class="res-icon">📄</span>
+              <div class="res-content">
+                <div class="res-title">완료보고서 구성 항목</div>
+                <div class="res-desc">프로젝트 개요, 수행 결과 요약, 이슈사항 및 해결 내역, 산출물 목록, 향후 운영 권고사항, 손익분석표 최종 확정 수익률 포함</div>
+                <div class="res-link-group">
+                  <a class="res-link" href="https://yozm.wishket.com/magazine/detail/1606/" target="_blank">→ 요즘IT 기획문서 가이드</a>
+                </div>
+              </div>
+            </li>
+            <li class="resource-item">
+              <span class="res-icon">✍️</span>
+              <div class="res-content">
+                <div class="res-title">검수확인서 작성 및 고객 날인 프로세스</div>
+                <div class="res-desc">검수확인서 발행 → 고객 날인 → 산출물 전달 순서, 법적 효력 관련 체크리스트, 전자 서명 활용 방안</div>
+              </div>
+            </li>
+          </ul>
+        </div>
+        <div class="resource-section" style="margin-top:4px">
+          <div class="res-heading">📄 문서 포맷 예시</div>
+          <div class="doc-format">
+            <div class="doc-format-bar">
+              <div class="dot" style="background:#ff5f57"></div><div class="dot" style="background:#febc2e"></div><div class="dot" style="background:#28c840"></div>
+              <span class="doc-format-filename">완료보고서_[프로젝트명]_v1.0 &nbsp;/&nbsp; 검수확인서_[프로젝트명]</span>
+              <span class="doc-format-ext">.pptx / .docx</span>
+            </div>
+            <div class="doc-format-body">
+              <div class="df-section">
+                <div class="df-section-title">완료보고서 목차</div>
+                <div class="df-fields">
+                  <span class="df-field"><span class="req">1.</span> 프로젝트 개요</span>
+                  <span class="df-field"><span class="req">2.</span> 수행 결과 요약</span>
+                  <span class="df-field"><span class="req">3.</span> 산출물 목록</span>
+                  <span class="df-field"><span class="req">4.</span> 이슈 및 해결 내역</span>
+                  <span class="df-field"><span class="req">5.</span> 향후 운영 권고사항</span>
+                  <span class="df-field"><span class="opt">6.</span> 홍보자료 첨부</span>
+                </div>
+              </div>
+              <hr class="df-sep">
+              <div class="df-section">
+                <div class="df-section-title">검수확인서 항목</div>
+                <table class="df-table">
+                  <tr><th>항목</th><th>내용</th></tr>
+                  <tr><td>프로젝트명</td><td class="df-sample">[프로젝트명]</td></tr>
+                  <tr><td>계약기간</td><td class="df-sample">YYYY.MM.DD ~ YYYY.MM.DD</td></tr>
+                  <tr><td>검수 산출물 목록</td><td class="df-sample">별첨 산출물 목록표 참조</td></tr>
+                  <tr><td>검수 결과</td><td class="df-sample" style="color:#4ade80">이상없음 (검수완료)</td></tr>
+                  <tr><td>고객사 확인자</td><td class="df-sample">서명 / 날인란</td></tr>
+                  <tr><td>확인일</td><td class="df-sample">YYYY.MM.DD</td></tr>
+                </table>
+              </div>
+              <div class="df-note">검수확인서는 고객 날인 완료 후 산출물 전달 &nbsp;|&nbsp; 원본 1부 보관, 사본 고객사 전달</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════════════════════════════════
+       H. 관리/보고
+  ═══════════════════════════════════════════════════════════════ -->
+  <div class="phase-section">
+    <div class="phase-header">
+      <div class="phase-pill c-h">
+        <div class="phase-dot" style="background:#a78bfa"></div>
+        <span class="phase-code-text" style="color:#a78bfa">H</span>
+      </div>
+      <span class="phase-name-text">관리/보고 (전 단계 공통)</span>
+      <span class="phase-desc">프로젝트 전 기간 지속 관리</span>
+    </div>
+
+    <div class="deliverable-card">
+      <div class="card-header">
+        <div class="card-icon" style="background:rgba(167,139,250,0.1)">📊</div>
+        <div class="card-meta">
+          <div class="card-title">주간(월간) 업무 보고서</div>
+          <div class="card-subtitle">H02 · 고객사 제출 · ● 필수</div>
+          <div class="card-tags"><span class="tag tag-essential">필수</span><span class="tag tag-submit">고객사 제출</span></div>
+        </div>
+      </div>
+      <div class="card-body">
+        <div class="resource-section">
+          <div class="res-heading">📖 작성법 & 효율화 방법</div>
+          <ul class="resource-list">
+            <li class="resource-item">
+              <span class="res-icon">📝</span>
+              <div class="res-content">
+                <div class="res-title">주간보고서 항목 구성 가이드</div>
+                <div class="res-desc">주간 수행 내역, WBS 대비 진척률, 이슈사항·리스크, 차주 예정 업무, 결정 필요 사항. 고객사 문서표준에 맞춘 포맷 조정 방법</div>
+                <div class="res-link-group">
+                  <a class="res-link" href="https://yozm.wishket.com/magazine/detail/1112/" target="_blank">→ 요즘IT</a>
+                </div>
+              </div>
+            </li>
+            <li class="resource-item">
+              <span class="res-icon">🤖</span>
+              <div class="res-content">
+                <div class="res-title">AI를 활용한 보고서 자동화 방법</div>
+                <div class="res-desc">Jira/Notion 작업 데이터 → AI 요약 → 주간보고서 초안 생성 워크플로우. Claude/ChatGPT 프롬프트 활용 보고서 작성 시간 단축 방법</div>
+                <div class="res-link-group">
+                  <a class="res-link" href="https://class.modulabs.co.kr/courses/1217" target="_blank">→ 모두의연구소 UX-AI 강좌</a>
+                </div>
+              </div>
+            </li>
+          </ul>
+        </div>
+        <div class="resource-section" style="margin-top:4px">
+          <div class="res-heading">📄 문서 포맷 예시</div>
+          <div class="doc-format">
+            <div class="doc-format-bar">
+              <div class="dot" style="background:#ff5f57"></div><div class="dot" style="background:#febc2e"></div><div class="dot" style="background:#28c840"></div>
+              <span class="doc-format-filename">주간업무보고서_[YYYYWW]_[프로젝트명]</span>
+              <span class="doc-format-ext">.pptx / .docx</span>
+            </div>
+            <div class="doc-format-body">
+              <div class="df-section">
+                <div class="df-section-title">표준 항목 구성</div>
+                <table class="df-table">
+                  <tr><th>항목</th><th>내용</th></tr>
+                  <tr><td>보고 기간</td><td class="df-sample">YYYY.MM.DD(월) ~ MM.DD(금) | N주차</td></tr>
+                  <tr><td>금주 수행 내역</td><td class="df-sample">파트별 수행 내용 / WBS 진척율 기재</td></tr>
+                  <tr><td>진척 현황</td><td class="df-sample">계획 대비 실적 (%) / 지연 사유</td></tr>
+                  <tr><td>이슈 / 리스크</td><td class="df-sample">이슈 내용, 영향도, 대응 방안</td></tr>
+                  <tr><td>결정 필요 사항</td><td class="df-sample">고객사 의사결정 요청 항목</td></tr>
+                  <tr><td>차주 예정 업무</td><td class="df-sample">파트별 예정 수행 내용</td></tr>
+                </table>
+              </div>
+              <hr class="df-sep">
+              <div class="df-section">
+                <div class="df-section-title">파트별 진척 현황 표</div>
+                <table class="df-table">
+                  <tr><th>파트</th><th>담당자</th><th>금주 수행</th><th>진척율</th><th>비고</th></tr>
+                  <tr><td>기획</td><td class="df-sample">홍길동</td><td class="df-sample">화면설계서 3차 수정</td><td class="df-sample">75%</td><td>-</td></tr>
+                  <tr><td>디자인</td><td class="df-sample">김디자</td><td class="df-sample">스타일가이드 작성</td><td class="df-sample">60%</td><td>-</td></tr>
+                  <tr><td>개발</td><td class="df-sample">이개발</td><td class="df-sample">회원 기능 개발</td><td class="df-sample">40%</td><td>일정 조정 필요</td></tr>
+                </table>
+              </div>
+              <div class="df-note">고객사 문서표준이 있는 경우 해당 양식 우선 적용 &nbsp;|&nbsp; 매주 동일 요일·시간에 정기 배포 권장</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════════════════════════════════
+       종합 추천 자료
+  ═══════════════════════════════════════════════════════════════ -->
+  <div class="phase-section">
+    <div class="phase-header" style="border-bottom-color:rgba(79,124,255,0.3)">
+      <span class="phase-name-text" style="color:var(--accent)">🌐 종합 추천 교육 플랫폼 & 채널</span>
+    </div>
+
+    <div style="display:grid; grid-template-columns:repeat(auto-fit,minmax(300px,1fr)); gap:14px">
+
+      <div class="deliverable-card">
+        <div class="card-header">
+          <div class="card-icon" style="background:rgba(79,124,255,0.1)">🎓</div>
+          <div class="card-meta">
+            <div class="card-title">국내 실무 블로그 & 미디어</div>
+            <div class="card-subtitle">무료 · 한국어 · 최신 실무 중심</div>
+          </div>
+        </div>
+        <div class="card-body">
+          <ul class="resource-list">
+            <li class="resource-item">
+              <div class="res-content">
+                <div class="res-title">요즘IT (wishket)</div>
+                <div class="res-desc">기획·개발·디자인 실무 아티클. IA, 스토리보드, 프로젝트 문서 작성법 다수 보유</div>
+                <div class="res-link-group"><a class="res-link" href="https://yozm.wishket.com" target="_blank">→ yozm.wishket.com</a></div>
+              </div>
+            </li>
+            <li class="resource-item">
+              <div class="res-content">
+                <div class="res-title">pxd story / pxd tech</div>
+                <div class="res-desc">국내 UX 전문 컨설팅 회사 pxd의 리서치·설계·AI 활용 실무 경험 공유</div>
+                <div class="res-link-group"><a class="res-link" href="https://story.pxd.co.kr" target="_blank">→ story.pxd.co.kr</a></div>
+              </div>
+            </li>
+            <li class="resource-item">
+              <div class="res-content">
+                <div class="res-title">기획자 데이먼 (yslab.kr)</div>
+                <div class="res-desc">IA 설계, 화면설계서, Axure 활용 등 PM/기획자 실무 영상·포스트</div>
+                <div class="res-link-group"><a class="res-link" href="https://yslab.kr" target="_blank">→ yslab.kr</a></div>
+              </div>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="deliverable-card">
+        <div class="card-header">
+          <div class="card-icon" style="background:rgba(79,124,255,0.1)">📚</div>
+          <div class="card-meta">
+            <div class="card-title">공식 가이드라인 & 표준</div>
+            <div class="card-subtitle">정부/국제 공인 · 무료</div>
+          </div>
+        </div>
+        <div class="card-body">
+          <ul class="resource-list">
+            <li class="resource-item">
+              <div class="res-content">
+                <div class="res-title">KRDS – 한국 디자인 시스템 (2025)</div>
+                <div class="res-desc">공공기관 UI/UX 표준. 컴포넌트·스타일·패턴 무료 제공</div>
+                <div class="res-link-group"><a class="res-link" href="https://www.krds.go.kr" target="_blank">→ krds.go.kr</a></div>
+              </div>
+            </li>
+            <li class="resource-item">
+              <div class="res-content">
+                <div class="res-title">KWCAG 2.2 – 웹접근성 지침</div>
+                <div class="res-desc">국가표준 KWCAG 2.2 전문, 33개 검사항목 상세 설명</div>
+                <div class="res-link-group"><a class="res-link" href="https://a11ykr.github.io/kwcag22/" target="_blank">→ a11ykr.github.io</a></div>
+              </div>
+            </li>
+            <li class="resource-item">
+              <div class="res-content">
+                <div class="res-title">UXKM – UX Knowledge Map</div>
+                <div class="res-desc">UI/UX 개념부터 접근성·설계 원칙까지 체계적으로 정리된 한국어 지식맵</div>
+                <div class="res-link-group"><a class="res-link" href="https://uxkm.io" target="_blank">→ uxkm.io</a></div>
+              </div>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="deliverable-card">
+        <div class="card-header">
+          <div class="card-icon" style="background:rgba(79,124,255,0.1)">🛠️</div>
+          <div class="card-meta">
+            <div class="card-title">실무 툴 & 강좌</div>
+            <div class="card-subtitle">유/무료 · 실습 중심</div>
+          </div>
+        </div>
+        <div class="card-body">
+          <ul class="resource-list">
+            <li class="resource-item">
+              <div class="res-content">
+                <div class="res-title">Figma Community – UX 템플릿</div>
+                <div class="res-desc">화면설계서 v3.0, IA 구조도, 와이어프레임 키트 등 무료 배포 파일</div>
+                <div class="res-link-group"><a class="res-link" href="https://www.figma.com/community" target="_blank">→ figma.com/community</a></div>
+              </div>
+            </li>
+            <li class="resource-item">
+              <div class="res-content">
+                <div class="res-title">모두의연구소 – UX-AI 활용 강좌</div>
+                <div class="res-desc">AI 프롬프트 작성 + UX 리서치 품질 향상 방법론 강의. 누적 수강생 890명+</div>
+                <div class="res-link-group"><a class="res-link" href="https://class.modulabs.co.kr/courses/1217" target="_blank">→ class.modulabs.co.kr</a></div>
+              </div>
+            </li>
+            <li class="resource-item">
+              <div class="res-content">
+                <div class="res-title">이랜서 블로그 – 실무 양식 무료 배포</div>
+                <div class="res-desc">스토리보드 PPT 양식, 디자인 시스템 가이드 등 실무 문서 무료 배포</div>
+                <div class="res-link-group"><a class="res-link" href="https://www.elancer.co.kr/blog" target="_blank">→ elancer.co.kr/blog</a></div>
+              </div>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+</div><!-- /container -->
+
+<footer>
+  <span>📋 Process Map_240729 기반 기획산출물 교육자료 수집 · 수집 기준 2025.03</span>
+  <span>총 30개 항목 · A~H 8개 Phase</span>
+</footer>
+
+</body>
+</html>
